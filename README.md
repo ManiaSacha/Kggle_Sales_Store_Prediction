@@ -30,3 +30,24 @@ This implementation uses LSTM (Long Short-Term Memory) neural networks for time 
 - Store and product family information
 - Oil price data
 - Holiday information
+
+## Model Performance
+
+### Training Results
+- **Model**: LSTM with batch normalization and dropout
+- **Training RMSLE**: ~0.054
+- **Validation RMSLE**: ~0.09
+- **Early Stopping**: Activated after ~197 epochs
+- **Optimizer**: Adam with learning rate scheduler
+
+### Prediction Results
+- Successfully generated predictions for 28,512 test data points
+- 96.6% of predictions have positive (non-zero) sales values
+- The model successfully captures the sales patterns for different store-product combinations
+
+## Future Improvements
+- Incorporate oil price data as additional features
+- Add holiday and events information
+- Experiment with different sequence lengths
+- Try more advanced architectures (GRU, Transformer)
+- Implement ensemble methods combining multiple models

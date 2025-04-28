@@ -5,6 +5,31 @@ This repository contains a PyTorch implementation for the Kaggle competition "St
 ## Overview
 The goal of this competition is to build a model that accurately predicts the unit sales for thousands of items sold at different Favorita stores in Ecuador.
 
+## Project Architecture
+
+### Data Processing Pipeline
+- **Loading**: Loads various datasets (train, test, oil prices, stores, holidays, transactions)
+- **Preprocessing**: 
+  - Handles date features with proper datetime conversion
+  - Pivots sales data by store and product family for time series format
+  - Scales features using MinMaxScaler
+  - Prepares sequences with sliding window approach for LSTM input
+
+### LSTM Model Architecture
+- **Input Layer**: Takes in sequences of store-family sales combinations
+- **LSTM Layers**: 2 stacked LSTM layers with 200 hidden units each
+- **Regularization**: 
+  - Dropout (0.2) between LSTM layers
+  - Batch normalization for improved training stability
+- **Output Layer**: Dense layer that predicts sales for each store-family combination
+
+### Training and Prediction Pipeline
+- **Training Loop**: Uses early stopping with patience=100
+- **Loss Function**: Custom RMSLE (Root Mean Squared Logarithmic Error) loss
+- **Optimizer**: Adam with learning rate scheduling
+- **Validation**: Uses a time-based split for validation
+- **Prediction**: Generates predictions for test data and formats for Kaggle submission
+
 ## Project Structure
 - `data_processing.py`: Functions for data loading and preprocessing
 - `model.py`: PyTorch LSTM model implementation
